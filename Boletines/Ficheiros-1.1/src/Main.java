@@ -8,11 +8,11 @@ public class Main {
 
         String fileName = "p1";
         String dirName = "/home/dam/Documentos/Samuel/AcesoDatos";
-        String directorio = "prueba3";
+        String directorio = "arquivosdir";
         String cadea = "/home/dam/Documentos/Samuel/AcesoDatos";
         //System.out.println(eDirectorio(cadea));
         //System.out.println(eFicheiro(cadea));
-        //System.out.println(creaDirectorio(directorio));
+        System.out.println(creaDirectorio(directorio));
         //System.out.println(crearFicheiro(dirName, fileName));
         //System.out.println(modoAcceso(dirName, fileName));
         //System.out.println(calculaLonxitude(dirName, fileName));
@@ -29,8 +29,6 @@ public class Main {
 
     public static String eDirectorio(String cadea) {
         File c = new File(cadea);
-        // Para conseguir la ruta en caso de que no nos este dando ponemos esto System.out.println
-
 
         if (c.isDirectory()) {
             return ("1. E un directorio");
@@ -72,43 +70,36 @@ public class Main {
                 System.out.println("4. Fichero creado correctamente.");
                 return "fichero creado";
             } else {
-                System.out.println("4. ERROR: No se pudo crear el fichero.");
-                return "error: no se pudo crear fichero";
+                return "no se pudo crear fichero";
             }
         } catch (IOException e) {
-            System.out.println("4. ERROR de E/S: " + e.getMessage());
+            System.out.println(e.getMessage());
             e.printStackTrace();
-            return "error: excepción de E/S";
+            return "error";
         }
     }
 
 
     public static String modoAcceso(String dirName, String fileName) {
 
-
         File d = new File(dirName);
         File f = new File(d, fileName);
 
-
         if (d.exists()) {
 
-
             if (f.exists()) {
-
 
                 if (f.canRead()) {
                     System.out.println("se puede leer");
                 } else System.out.println("no se puede leer");
 
-
                 if (f.canWrite()) {
                     System.out.println("se puede escribir");
                 } else System.out.println("no se puede escribir");
+
             } else System.out.println("el archivo no existe");
 
-
         } else System.out.println("el directorio no existe");
-
 
         return "funciona";
     }
@@ -116,16 +107,12 @@ public class Main {
 
     public static String calculaLonxitude(String dirName, String fileName) {
 
-
         File d = new File(dirName);
         File f = new File(d, fileName);
 
-
         if (d.exists()) {
 
-
             System.out.println("el directorio existe y su longitud es : " + f.length());
-
 
         } else System.out.println("el directorio no existe");
         return "funciona";
@@ -156,18 +143,19 @@ public class Main {
 
     public static String mEscritura(String dirName, String fileName) {
 
-
         File d = new File(dirName);
         File f = new File(d, fileName);
 
-
         if (d.exists()) {
+
             System.out.println("el directorio existe ");
+
             if (f.exists()) {
+
                 f.setWritable(true);
                 System.out.println("se le acaba de conceder el permiso");
-            } else System.out.println("el archivo no existe");
 
+            } else System.out.println("el archivo no existe");
 
         } else System.out.println("el directorio no existe");
         return "funciona";
@@ -182,15 +170,12 @@ public class Main {
         if (d.exists()) {
             System.out.println("el directorio existe");
 
-
             if (f.exists()) {
                 f.delete();
                 System.out.println("se acaba de eliminar el archivo");
             } else System.out.println("el archivo no existe");
 
-
         } else System.out.println("el el directorio no existe");
-
 
         return "funciona";
     }
