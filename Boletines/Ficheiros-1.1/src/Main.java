@@ -19,6 +19,9 @@ public class Main {
         //System.out.println(mLectura(dirName, fileName));
         //System.out.println(mEscritura(dirName, fileName));
         //System.out.println(borrarFicheiro(dirName, fileName));
+        borrarDirectorio(dirName);
+        mContido(dirName);
+        recur(new File("/home/dam/Documentos/Samuel/AcesoDatos/a"));
     }
 
     /* Haz una funcion para mover directorios */
@@ -173,10 +176,8 @@ public class Main {
 
     public static String borrarFicheiro(String dirName, String fileName) {
 
-
         File d = new File(dirName);
         File f = new File(d, fileName);
-
 
         if (d.exists()) {
             System.out.println("el directorio existe");
@@ -192,6 +193,56 @@ public class Main {
 
 
         return "funciona";
+    }
+    public static String borrarDirectorio(String dirName) {
+
+        File d = new File(dirName);
+
+        if (d.exists()&& d.isDirectory()) {
+            System.out.println("el directorio existe");
+
+            d.delete();
+            }
+        else System.out.println("el el directorio no existe");
+
+
+        return "funciona";
+    }
+
+    public static void mContido(String dirName) {
+        File dir = new File(dirName);
+
+        if (dir.exists() && dir.isDirectory()) {
+            String[] contido = dir.list();
+
+            if (contido != null && contido.length > 0) {
+                for (String t : contido) {
+                    System.out.println(t);
+                }
+
+            } else {
+                System.out.println("No tiene contenido.");
+            }
+        }
+    }
+    public static void recur(File archivo) {
+
+        if (archivo.exists()) {
+            if (archivo.isDirectory()) {
+                System.out.println("Directorio " + archivo.getAbsolutePath());
+                File[] files = archivo.listFiles();
+
+                if (files != null) {
+                    for (File file : files) {
+                        recur(file);
+                    }
+                }
+            } else {
+                System.out.println("Archivo " + archivo.getAbsolutePath());
+            }
+        } else {
+            System.out.println("No existe");
+        }
     }
 
 
