@@ -6,25 +6,23 @@ public class Main {
     public static void main(String[] args) {
 
 
-        String fileName = "p1";
-        String dirName = "/home/dam/Documentos/Samuel/AcesoDatos";
-        String directorio = "arquivosdir";
+        String fileName = "Products2.txt";
+        String dirName = "\\Users\\samue\\Documents\\Dam2\\AD\\arquivosdir\\subdir";
+        String directorio = "arquivosdir\\subdir";
         String cadea = "/home/dam/Documentos/Samuel/AcesoDatos";
         //System.out.println(eDirectorio(cadea));
         //System.out.println(eFicheiro(cadea));
-        System.out.println(creaDirectorio(directorio));
-        //System.out.println(crearFicheiro(dirName, fileName));
+       // System.out.println(creaDirectorio(directorio));
+        System.out.println(crearFicheiro(dirName, fileName));
         //System.out.println(modoAcceso(dirName, fileName));
         //System.out.println(calculaLonxitude(dirName, fileName));
         //System.out.println(mLectura(dirName, fileName));
         //System.out.println(mEscritura(dirName, fileName));
         //System.out.println(borrarFicheiro(dirName, fileName));
-        borrarDirectorio(dirName);
-        mContido(dirName);
-        recur(new File("/home/dam/Documentos/Samuel/AcesoDatos/a"));
+        //borrarDirectorio(dirName);
+        //mContido(dirName);
+        //recur(new File("/home/dam/Documentos/Samuel/AcesoDatos/a"));
     }
-
-    /* Haz una funcion para mover directorios */
 
 
     public static String eDirectorio(String cadea) {
