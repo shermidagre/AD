@@ -12,7 +12,7 @@ public class Main3 {
     }
     static void duplicarTexto(String ruta) throws FileNotFoundException, RuntimeException {
         DataInputStream in = new DataInputStream(new FileInputStream(ruta));
-        DataOutputStream out = new DataOutputStream(new FileOutputStream(ruta + ".dup"));
+        DataOutputStream out = new DataOutputStream(new FileOutputStream(ruta));
         try {
 
             String texto = in.readUTF();
