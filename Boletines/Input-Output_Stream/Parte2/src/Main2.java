@@ -6,11 +6,11 @@ import java.util.Arrays;
 public class Main2 {
     public static void main(String[] args) throws IOException {
 
-        String ruta1 = "Input-Output_Stream/randomfoto1.jpg";
-        String ruta2 = "Input-Output_Stream/randomfoto2.jpg";
+        String ruta1 = "randomfoto1.jpg";
+        String ruta2 = "randomfoto2.jpg";
 
         //   copiararfoto(ruta1,ruta2);
-        añadirfoto(ruta1, ruta2);
+        // añadirfoto(ruta1, ruta2);
     }
 
     public static void copiararfoto(String ruta1, String ruta2) throws IOException {
@@ -45,7 +45,6 @@ public class Main2 {
         in.close();
         out.close();
 
-
     }
 
     public static void añadirfoto(String ruta1, String ruta2) throws IOException {
@@ -62,6 +61,55 @@ public class Main2 {
         }
         in.close();
         out.close();
+
+    }
+    public static void copiararfoto1(String ruta1, String ruta2) throws IOException {
+
+        FileInputStream fis = new FileInputStream(ruta1);
+        FileOutputStream fos = new FileOutputStream(ruta2);
+
+        int caracter = 0;
+        byte[] p = new byte[fis.available()];
+        System.out.println("mensaje de depuracion (bytes leidos) " + Arrays.toString(p));
+        try {
+            while (true) {
+                int bytesLeidos = fis.read();
+                if (bytesLeidos == -1) {
+                    break;
+                } else {
+                    byte b = (byte) bytesLeidos;
+                    p[caracter] = b;
+                    caracter++;
+
+                }
+
+            }
+            System.out.println("mensaje de depuracion (ver si se copian) " + Arrays.toString(p));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        fos.write(p);
+        System.out.println("datos escritos en el archivo de destino.");
+        fis.close();
+        fos.close();
+
+    }
+    public static void añadirfoto1(String ruta1, String ruta2) throws IOException {
+        FileInputStream fis = new FileInputStream(ruta1);
+        FileOutputStream fos = new FileOutputStream(ruta2,true);
+        int caracter;
+        try {
+            while ((caracter = fis.read()) != -1) {
+                fos.write(caracter);
+            }
+            System.out.println("mensaje de depuracion (comprobar si llega a leer todos los bytes) -> " + caracter);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        fis.close();
+        fos.close();
 
     }
 }

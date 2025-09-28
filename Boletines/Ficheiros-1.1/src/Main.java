@@ -6,22 +6,22 @@ public class Main {
     public static void main(String[] args) {
 
 
-        String fileName = "Products2.txt";
-        String dirName = "\\Users\\samue\\Documents\\Dam2\\AD\\arquivosdir\\subdir";
+        String fileName = "Products1.txt";
+        String dirName = "\\Users\\samue\\Documents\\Dam2\\AD\\arquivosdir";
         String directorio = "arquivosdir\\subdir";
         String cadea = "/home/dam/Documentos/Samuel/AcesoDatos";
         //System.out.println(eDirectorio(cadea));
         //System.out.println(eFicheiro(cadea));
        // System.out.println(creaDirectorio(directorio));
-        System.out.println(crearFicheiro(dirName, fileName));
+       // System.out.println(crearFicheiro(dirName, fileName));
         //System.out.println(modoAcceso(dirName, fileName));
         //System.out.println(calculaLonxitude(dirName, fileName));
         //System.out.println(mLectura(dirName, fileName));
         //System.out.println(mEscritura(dirName, fileName));
         //System.out.println(borrarFicheiro(dirName, fileName));
-        //borrarDirectorio(dirName);
+        ///borrarDirectorio(new File("\\Users\\samue\\Documents\\Dam2\\AD\\arquivosdir"));
         //mContido(dirName);
-        //recur(new File("/home/dam/Documentos/Samuel/AcesoDatos/a"));
+        recur(new File("\\Users\\samue\\Documents\\Dam2\\AD\\Boletines"));
     }
 
 
@@ -177,21 +177,27 @@ public class Main {
 
         return "funciona";
     }
-    public static String borrarDirectorio(String dirName) {
 
-        File d = new File(dirName);
+    public static boolean borrarDirectorio(File directorio) {
+        // Obtenemos una lista de todos los archivos y subdirectorios dentro del directorio
+        File[] listaContenido = directorio.listFiles();
 
-        if (d.exists()&& d.isDirectory()) {
-            System.out.println("el directorio existe");
+        // Verificamos que la lista no sea nula (esto ocurre si la ruta no es un directorio)
+        if (listaContenido != null) {
+            // Recorremos la lista de archivos/directorios
+            for (File contenido : listaContenido) {
 
-            d.delete();
+                if (contenido.isDirectory()) {
+                    borrarDirectorio(contenido);
+                } else {
+                    // Si el elemento es un archivo, lo borramos directamente
+                    contenido.delete();
+                }
             }
-        else System.out.println("el el directorio no existe");
-
-
-        return "funciona";
+        }
+        // Una vez que el directorio está vacío, ahora sí lo eliminamos
+        return directorio.delete();
     }
-
     public static void mContido(String dirName) {
         File dir = new File(dirName);
 

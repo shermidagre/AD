@@ -11,11 +11,13 @@ public class Main  {
         //System.out.println(prueba.length() + " bytes");
         String ruta1 = "Input-Output_Stream/texto1.txt";
         String ruta2 = "Input-Output_Stream/texto2.txt";
+
        /*
         creararchivoEj1("texto2.txt","Tanjiro\n" +
                 "Nezuko\n" +
                 "Muzan\n");
         */
+
         // copiararachivoEj2(ruta1,ruta2);
         añadircontenidoEj3(ruta1,ruta2);
         //copiararchivoEj2.1("texto1.txt", "texto3.txt");
@@ -45,9 +47,7 @@ public class Main  {
                     byte b = (byte) bytesLeidos;
                     p[caracter] = b;
                     caracter++;
-
                 }
-
             }
             System.out.println("mensaje de depuracion (ver si se copian) " + Arrays.toString(p));
 
@@ -59,8 +59,6 @@ public class Main  {
         System.out.println("datos escritos en el archivo de destino.");
         in.close();
         out.close();
-
-
 
     }
 
