@@ -1,1 +1,1 @@
-Hasta el ejercicio 9 no tengo ningun commit echo, a partir de aqui se empieza
+Hasta el ejercicio 9 no tengo ningun commit hecho, a partir de aqui se empieza
