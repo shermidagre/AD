@@ -1,4 +1,3 @@
-Claro! A continuación, te presento el contenido que proporcionaste convertido a un formato **README.md** en **Markdown**, estructurado de forma clara, profesional y legible:
 
 ---
 
