@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/ADA.iml" filepath="$PROJECT_DIR$/.idea/ADA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Boletines/Boletines.iml" filepath="$PROJECT_DIR$/Boletines/Boletines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Conexionesbd/Conexionesbd.iml" filepath="$PROJECT_DIR$/Conexionesbd/Conexionesbd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Boletines/Ficheiros-1.1/Ficheiros-1.1.iml" filepath="$PROJECT_DIR$/Boletines/Ficheiros-1.1/Ficheiros-1.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/untitled/untitled.iml" filepath="$PROJECT_DIR$/untitled/untitled.iml" />
+    </modules>
+  </component>
+</project>
