@@ -12,6 +12,7 @@ public class EjecutarConsulta(String sql, String mensajeExito) {
 
     try (Connection conn = DriverManager.getConnection(url, user, contraseña);
          Statement stmt = conn.createStatement()) {
+        String sql;
         stmt.execute(sql);
         System.out.println(mensajeExito);
     } catch (SQLException e) {
