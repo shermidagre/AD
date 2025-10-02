@@ -1,20 +1,9 @@
-# Gradle
-.gradle/
-build/
-
 # IntelliJ IDEA
 .idea/
 *.iml
 *.iws
 out/
 
-# Logs
-*.log
-
-# Temp files
-.DS_Store
-Thumbs.db
-
-# Environment
-.env
-
+# Gradle
+.gradle/
+build/
