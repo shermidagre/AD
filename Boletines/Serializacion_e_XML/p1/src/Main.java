@@ -1,9 +1,13 @@
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
 import java.io.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+public class Main{
     public static void main(String[] args) {
+
+       String ruta = "autores.xml";
 
         // Parte 1
 
@@ -52,6 +56,65 @@ public class Main {
 
         }
         System.out.println("Objeto serializado con transient: " + pt2);
+
+
+        // Parte 3
+
+        XMLOutputFactory r1 = XMLOutputFactory.newInstance();
+        try {
+         XMLStreamWriter esc =  r1.createXMLStreamWriter(new FileWriter(ruta));
+         esc.writeStartDocument("1.0");
+
+         esc.writeStartElement("autores");
+
+            esc.writeStartElement("autor");
+            esc.writeAttribute("codigo", "a1");
+
+
+            esc.writeStartElement("nombre");
+            esc.writeCharacters("Alexandre Dumas");
+            esc.writeEndElement();
+
+            esc.writeStartElement("titulo");
+            esc.writeCharacters("El conde de montecristo");
+            esc.writeEndElement();
+
+            esc.writeStartElement("titulo");
+            esc.writeCharacters("Los miserables");
+            esc.writeEndElement();
+
+
+            esc.writeEndElement(); // autor
+
+            esc.writeStartElement("autor");
+            esc.writeAttribute("codigo", "a2");
+
+            esc.writeStartElement("nombre");
+            esc.writeCharacters("Fiodor Dosyevski");
+            esc.writeEndElement();
+
+            esc.writeStartElement("titulo");
+            esc.writeCharacters("Noches blancas");
+            esc.writeEndElement();
+            esc.writeStartElement("titulo");
+            esc.writeCharacters("El idiota");
+            esc.writeEndElement();
+
+
+            esc.writeEndElement(); // autor
+            esc.writeEndElement(); // autores
+
+
+            esc.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("XML creado en: " + ruta);
+
+
     }
 }
 

@@ -1,0 +1,9 @@
+<?xml version="1.0"?><!DOCTYPE autores [
+        <!ELEMENT autores (autor)*>
+        <!ELEMENT autor (nombre|titulo)*>
+        <!ATTLIST autor
+                codigo CDATA #REQUIRED>
+        <!ELEMENT nombre (#PCDATA)>
+        <!ELEMENT titulo (#PCDATA)>
+        ]>
+<autores><autor codigo="a1"><nombre>Alexandre Dumas</nombre><titulo>El conde de montecristo</titulo><titulo>Los miserables</titulo></autor><autor codigo="a2"><nombre>Fiodor Dosyevski</nombre><titulo>Noches blancas</titulo><titulo>El idiota</titulo></autor></autores>

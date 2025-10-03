@@ -2,9 +2,8 @@ import java.io.Serializable;
 
 public class ProductoTransient implements Serializable {
      transient String nombre;
-    transient double precio;
+     transient double precio;
      int cantidad;
-    String ruta = "C:\\Users\\Usuario\\Desktop\\Boletines\\Serializacion_e_XML\\producto.txt";
 
     public ProductoTransient(String nombre, double precio, int cantidad){
         this.nombre = nombre;
