@@ -1,5 +1,3 @@
-package Serializacion_e_XML.src;
-
 import java.io.Serializable;
 
 public class Producto implements Serializable {
