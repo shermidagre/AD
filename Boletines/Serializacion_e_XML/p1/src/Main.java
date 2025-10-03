@@ -30,7 +30,7 @@ public class Main{
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("Objeto deserializado: " + p2);
+        System.out.println("Objeto serializado: " + p2);
 
 
         // Parte 2
