@@ -1,12 +1,12 @@
 import java.io.Serializable;
 
-public class Producto implements Serializable {
-    String nombre;
-    double precio;
-    int cantidad;
+public class ProductoTransient implements Serializable {
+     transient String nombre;
+    transient double precio;
+     int cantidad;
     String ruta = "C:\\Users\\Usuario\\Desktop\\Boletines\\Serializacion_e_XML\\producto.txt";
 
-    public Producto (String nombre, double precio, int cantidad){
+    public ProductoTransient(String nombre, double precio, int cantidad){
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
@@ -14,11 +14,10 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "Producto " +
+        return "ProductoTransient " +
                 "nombre='" + nombre + '\'' +
-                ",precio=" + precio +
+                ",Transient precio=" + precio +
                 ",cantidad=" + cantidad
                 ;
     }
-
 }
