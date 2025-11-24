@@ -31,14 +31,16 @@ public class Titor {
     @OneToMany(mappedBy = "titor", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Alumno> alumnos = new ArrayList<>();
 
+    public Titor(String nome, String apelidos) {
+        this.nome = nome;
+        this.apelidos = apelidos;
+    }
+
     // Construtores
     public Titor() {
     }
 
-    public Titor(String nome, String apelidos, String email) {
-        this.nome = nome;
-        this.apelidos = apelidos;
-    }
+
 
     // Getters e Setters
 
@@ -67,4 +69,7 @@ public class Titor {
         this.apelidos = apelidos;
     }
 
+    public Titor(List<Alumno> alumnos) {
+        this.alumnos = alumnos;
+    }
 }

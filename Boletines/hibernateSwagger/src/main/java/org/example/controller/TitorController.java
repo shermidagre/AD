@@ -30,12 +30,12 @@ public class TitorController {
     }
 
     @Operation(summary = "Obter todos os titores")
-    @GetMapping("/titotres")
+    @GetMapping("/titores")
     public List<Titor> obtenerTodosOsTitores() {
         return titorService.obtenerTodosOsTitores();
     }
 
-    @Operation(summary = "Obter titor por ID")
+    @Operation(summary = "Obter alumnos de un titor por id")
     @GetMapping("/titor/{id}")
     public ResponseEntity<Titor> obterTitororId(@PathVariable Long id) {
         Optional<Titor> persoa = titorService.obtenerTitorPorId(id);

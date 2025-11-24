@@ -34,4 +34,6 @@ public class TitorService {
     public Titor actualizarTitor(Titor titor){
         return titorRepository.save(titor);
     }
+
+
 }

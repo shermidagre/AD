@@ -14,6 +14,8 @@ ON DELETE RESTRICT
 );
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -39,9 +41,16 @@ public class Alumno {
     )
     private Titor titor;
 
+    public Alumno(String nome, String apelidos) {
+        this.nome = nome;
+        this.apelidos = apelidos;
+    }
+
     // Construtores
     public Alumno() {
     }
+
+
 
     // Getters y Setters
 
