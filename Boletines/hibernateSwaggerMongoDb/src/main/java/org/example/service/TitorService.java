@@ -27,7 +27,7 @@ public class TitorService {
 
     @Transactional
     public Titor actualizarTitorExistente(Long id, Titor nuevoTitor) {
-        Titor titor = titorRepository.findById(id)
+        Titor titor = titorRepository.findById(String.valueOf(id))
                 .orElseThrow(() -> new EntityNotFoundException("Titor no encontrado"));
 
         titor.setNome(nuevoTitor.getNome());
@@ -40,12 +40,12 @@ public class TitorService {
     }
 
     public Optional<Titor> obtenerTitorPorId(Long id) {
-        return titorRepository.findById(id);
+        return titorRepository.findById(String.valueOf(id));
     }
 
     public boolean eliminarTitor(Long id) {
-        if (titorRepository.existsById(id)) {
-            titorRepository.deleteById(id);
+        if (titorRepository.existsById(String.valueOf(id))) {
+            titorRepository.deleteById(String.valueOf(id));
             return true;
         }
         return false;

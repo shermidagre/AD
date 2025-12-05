@@ -26,7 +26,7 @@ public class AlumnoService {
 
     @Transactional
     public Alumno crearOactualizarAlumno(Alumno alumno) {
-        Long idTitor = alumno.getIdTitor();
+        String idTitor = alumno.getIdTitor();
 
         if (idTitor == null) {
             throw new IllegalArgumentException("El alumno debe tener un id_titor asociado.");
@@ -42,7 +42,7 @@ public class AlumnoService {
 
     @Transactional
     public Alumno actualizarAlumnoExistente(Long id, Alumno nuevoAlumno) {
-        Alumno alumnoExistente = alumnoRepository.findById(id)
+        Alumno alumnoExistente = alumnoRepository.findById(String.valueOf(id))
                 .orElseThrow(() -> new EntityNotFoundException("Alumno no encontrado"));
 
         alumnoExistente.setNome(nuevoAlumno.getNome());
@@ -63,12 +63,12 @@ public class AlumnoService {
     }
 
     public Optional<Alumno> obtenerAlumnoPorId(Long id) {
-        return alumnoRepository.findById(id);
+        return alumnoRepository.findById(String.valueOf(id));
     }
 
     public boolean eliminarAlumno(Long id) {
-        if (alumnoRepository.existsById(id)) {
-            alumnoRepository.deleteById(id);
+        if (alumnoRepository.existsById(String.valueOf(id))) {
+            alumnoRepository.deleteById(String.valueOf(id));
             return true;
         }
         return false;
