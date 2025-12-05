@@ -89,6 +89,68 @@ CREATE TABLE alumno (
 
 ---
 
+## Como iniciarlo en una maquina virtual
+
+### Instala docker si no lo tienes instalado para subir el contendor
+
+````dotenv
+sudo apt update
+sudo apt install docker.io -y
+````
+
+#### Crea el contenedor
+````dotenv
+sudo docker run -d -p 27017:27017 --name mi-mongo mongo:latest
+````
+
+#### Comprueba que esta subido
+
+````dotenv
+sudo docker ps
+````
+
+# 🚀 Guía Rápida: Probando tu API con Swagger UI
+
+Ahora que tu aplicación está conectada, puedes acceder y probar tus endpoints usando **Swagger UI**, una interfaz web interactiva ya instalada y configurada en tu proyecto. Swagger te genera botones para probar cada método **sin necesidad de escribir código**.
+
+---
+
+## 🔗 1. Abrir Swagger UI
+
+Tu aplicación Java corre localmente en Windows (no en la VM) y está configurada en el puerto `8082`.  
+Ingresa aquí:
+
+👉 [http://localhost:8082/swagger-ui/index.html](http://localhost:8082/swagger-ui/index.html)
+
+---
+
+## ⚠️ 2. Instrucciones de Uso (Orden Importante)
+
+Al abrir Swagger, verás dos secciones principales:
+
+- `titor-controller`
+- `alumno-controller`
+
+> ❗ **Importante**: Según la lógica implementada en `AlumnoService`, **un alumno NO puede existir sin un Titor**. Si intentas crear un alumno primero, obtendrás un error.
+
+Sigue **estrictamente este orden**:
+
+---
+
+### ✅ Paso A: Crear un Titor
+
+1. Despliega el grupo **`titor-controller`**.
+2. Busca el endpoint:  
+   🟩 `POST /api/titor`
+3. Haz clic en **"Try it out"** (a la derecha).
+4. En el campo **Request body**, reemplaza el contenido por:
+   ```json
+   {
+     "nome": "Pepe",
+     "apelidos": "Pérez"
+   }
+   
+
 ## 📚 Documentación API (Swagger)
 
 La API incluye documentación interactiva mediante **Swagger UI** en:
