@@ -2,8 +2,8 @@ package org.example.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.persistence.EntityNotFoundException;
-import org.example.model.Alumno;
-import org.example.service.AlumnoService;
+import org.example.model.Pokemon;
+import org.example.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(AlumnoController.MAPPING)
-public class AlumnoController {
+@RequestMapping(PokemonController.MAPPING)
+public class PokemonController {
 
     public static final String MAPPING = "/api";
 
     @Autowired
-    private AlumnoService alumnoService;
+    private PokemonService pokemonService;
 
-    @Operation(summary = "Crear un nuevo alumno")
-    @PostMapping("/alumno")
-    public ResponseEntity<?> crearAlumno(@RequestBody Alumno alumno) {
+    @Operation(summary = "Crear un nuevo pokemon")
+    @PostMapping("/pokemon")
+    public ResponseEntity<?> crearAlumno(@RequestBody Pokemon pokemon) {
         try {
-            return ResponseEntity.ok(alumnoService.crearOactualizarAlumno(alumno));
+            return ResponseEntity.ok(pokemonService.crearOactualizarAlumno(pokemon));
         } catch (IllegalArgumentException | EntityNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -31,23 +31,23 @@ public class AlumnoController {
 
     @Operation(summary = "Obtener todos los alumnos")
     @GetMapping("/alumnos")
-    public List<Alumno> obtenerTodosOsAlumnos() {
-        return alumnoService.obtenerTodosOsAlumnos();
+    public List<Pokemon> obtenerTodosOsAlumnos() {
+        return pokemonService.obtenerTodosOsAlumnos();
     }
 
     @Operation(summary = "Obtener alumno por ID")
     @GetMapping("/alumno/{id}")
-    public ResponseEntity<Alumno> obtenerAlumnoPorId(@PathVariable Long id) {
-        return alumnoService.obtenerAlumnoPorId(id)
+    public ResponseEntity<Pokemon> obtenerAlumnoPorId(@PathVariable Long id) {
+        return pokemonService.obtenerAlumnoPorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Actualizar un alumno")
     @PutMapping("/alumno/{id}")
-    public ResponseEntity<?> actualizarAlumno(@PathVariable Long id, @RequestBody Alumno alumnoDetails) {
+    public ResponseEntity<?> actualizarAlumno(@PathVariable Long id, @RequestBody Pokemon pokemonDetails) {
         try {
-            Alumno actualizado = alumnoService.actualizarAlumnoExistente(id, alumnoDetails);
+            Pokemon actualizado = pokemonService.actualizarAlumnoExistente(id, pokemonDetails);
             return ResponseEntity.ok(actualizado);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -57,7 +57,7 @@ public class AlumnoController {
     @Operation(summary = "Eliminar un alumno")
     @DeleteMapping("/alumno/{id}")
     public ResponseEntity<Void> eliminarAlumno(@PathVariable Long id) {
-        if (alumnoService.eliminarAlumno(id)) {
+        if (pokemonService.eliminarAlumno(id)) {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

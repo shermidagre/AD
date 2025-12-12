@@ -1,9 +1,9 @@
 package org.example.repository;
 
-import org.example.model.Titor;
+import org.example.model.Pokemon;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TitorRepository extends MongoRepository<Titor, String> {
+public interface PokemonRepository extends MongoRepository<Pokemon, String> {
 }

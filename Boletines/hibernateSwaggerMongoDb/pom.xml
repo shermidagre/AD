@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -10,8 +11,9 @@
     </parent>
 
     <groupId>org.example</groupId>
-    <artifactId>demo-mongo</artifactId> <!-- He cambiado el nombre para que tenga sentido -->
+    <artifactId>demo-mongo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>demo-mongo</name>
     <description>Demo project for Spring Boot MongoDB</description>
 
@@ -20,36 +22,28 @@
     </properties>
 
     <dependencies>
-        <!-- 1. MONGODB: Esta es la librería clave que te faltaba -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
-        <!-- 2. WEB: Para poder crear los controladores REST -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- 3. SWAGGER / OPENAPI: Para la documentación visual -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.3.0</version>
         </dependency>
 
-        <!-- 4. TESTING -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>demo-mongo</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
@@ -61,8 +55,6 @@
             <version>2.0.1</version>
         </dependency>
 
-        <!-- He eliminado 'hibernateSwagger' y la autoadherencia 'demo-jpa'
-             porque causan errores de compilación si no existen localmente -->
     </dependencies>
 
     <build>

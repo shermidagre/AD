@@ -1,7 +1,7 @@
 ```markdown
 # 🎓 Microservicio de Gestión de Tutores y Alumnos
 
-Este microservicio proporciona una API RESTful para gestionar tutores y sus alumnos, implementando una relación **one-to-many** (un titor puede tener múltiples alumnos). Está construido siguiendo buenas prácticas basadas en los proyectos **Adestrador (one2many)** y **Exemplo API REST con Swagger**.
+Este microservicio proporciona una API RESTful para gestionar tutores y sus alumnos, implementando una relación **one-to-many** (un adestrador puede tener múltiples alumnos). Está construido siguiendo buenas prácticas basadas en los proyectos **Adestrador (one2many)** y **Exemplo API REST con Swagger**.
 
 ---
 
@@ -10,8 +10,8 @@ Este microservicio proporciona una API RESTful para gestionar tutores y sus alum
 La API permite:
 
 - ✅ Crear tutores  
-- ✅ Crear alumnos (asociados a un titor)  
-- ✅ Leer un titor junto con todos sus alumnos (relación *one2many*)  
+- ✅ Crear alumnos (asociados a un adestrador)  
+- ✅ Leer un adestrador junto con todos sus alumnos (relación *one2many*)  
 - ✅ Modificar tutores y alumnos  
 - ✅ Eliminar tutores (*restringido si tienen alumnos*)  
 - ✅ Eliminar alumnos  
@@ -20,31 +20,31 @@ La API permite:
 
 ## 🗃️ Modelo de Datos
 
-### Tabla `titor`
+### Tabla `adestrador`
 ```sql
-CREATE TABLE titor (
+CREATE TABLE adestrador (
   id_titor SERIAL PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
   apelidos VARCHAR(150) NOT NULL
 );
 ```
 
-### Tabla `alumno`
+### Tabla `pokemon`
 ```sql
-CREATE TABLE alumno (
+CREATE TABLE pokemon (
   id_alumno SERIAL PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
   apelidos VARCHAR(150) NOT NULL,
   id_titor INTEGER NOT NULL,
   CONSTRAINT fk_titor
     FOREIGN KEY (id_titor)
-    REFERENCES titor (id_titor)
+    REFERENCES adestrador (id_titor)
     ON UPDATE CASCADE
     ON DELETE RESTRICT  -- No se permite borrar tutores con alumnos asignados
 );
 ```
 
-> 🔒 **Restricción importante**: No se permite eliminar un titor si tiene alumnos asociados (`ON DELETE RESTRICT`).
+> 🔒 **Restricción importante**: No se permite eliminar un adestrador si tiene alumnos asociados (`ON DELETE RESTRICT`).
 
 ---
 
@@ -76,13 +76,13 @@ CREATE TABLE alumno (
 
 | Método | Ruta                    | Descripción                                         |
 |--------|-------------------------|-----------------------------------------------------|
-| `POST`   | `/titor`                | Crear un nuevo titor                                |
-| `POST`   | `/alumno`               | Crear un nuevo alumno (asociado a un `id_titor`)   |
-| `GET`    | `/titor/{id}`           | Obtener un titor **con todos sus alumnos**         |
-| `PUT`    | `/titor/{id}`           | Actualizar un titor                                 |
-| `PUT`    | `/alumno/{id}`          | Actualizar un alumno                                |
-| `DELETE` | `/alumno/{id}`          | Eliminar un alumno                                  |
-| `DELETE` | `/titor/{id}`           | Eliminar un titor (**solo si no tiene alumnos**)   |
+| `POST`   | `/adestrador`                | Crear un nuevo adestrador                                |
+| `POST`   | `/pokemon`               | Crear un nuevo pokemon (asociado a un `id_titor`)   |
+| `GET`    | `/adestrador/{id}`           | Obtener un adestrador **con todos sus alumnos**         |
+| `PUT`    | `/adestrador/{id}`           | Actualizar un adestrador                                 |
+| `PUT`    | `/pokemon/{id}`          | Actualizar un pokemon                                |
+| `DELETE` | `/pokemon/{id}`          | Eliminar un pokemon                                  |
+| `DELETE` | `/adestrador/{id}`           | Eliminar un adestrador (**solo si no tiene alumnos**)   |
 
 > ✅ Todos los endpoints devuelven respuestas en formato **JSON**.  
 > 📝 Los errores devuelven códigos HTTP adecuados (400, 404, 409, etc.).
@@ -128,10 +128,10 @@ Ingresa aquí:
 
 Al abrir Swagger, verás dos secciones principales:
 
-- `titor-controller`
-- `alumno-controller`
+- `adestrador-controller`
+- `pokemon-controller`
 
-> ❗ **Importante**: Según la lógica implementada en `AlumnoService`, **un alumno NO puede existir sin un Titor**. Si intentas crear un alumno primero, obtendrás un error.
+> ❗ **Importante**: Según la lógica implementada en `AlumnoService`, **un pokemon NO puede existir sin un Titor**. Si intentas crear un pokemon primero, obtendrás un error.
 
 Sigue **estrictamente este orden**:
 
@@ -139,9 +139,9 @@ Sigue **estrictamente este orden**:
 
 ### ✅ Paso A: Crear un Titor
 
-1. Despliega el grupo **`titor-controller`**.
+1. Despliega el grupo **`adestrador-controller`**.
 2. Busca el endpoint:  
-   🟩 `POST /api/titor`
+   🟩 `POST /api/adestrador`
 3. Haz clic en **"Try it out"** (a la derecha).
 4. En el campo **Request body**, reemplaza el contenido por:
    ```json
@@ -181,8 +181,6 @@ GET /v3/api-docs
 - **Pruebas**: JUnit / pytest
 
 ---
-
-
 ✅ Servidor disponible en: `http://localhost:8080`
 
 ---

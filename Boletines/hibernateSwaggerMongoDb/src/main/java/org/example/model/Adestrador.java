@@ -5,20 +5,20 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "titores")
-public class Titor {
+public class Adestrador {
 
     @Id // En Mongo el ID suele ser String (ObjectId)
     @Schema(hidden = true)
     private String id_titor;
 
     private String nome;
-    private String apelidos;
+    private String cidade;
 
-    public Titor() {}
+    public Adestrador() {}
 
-    public Titor(String nome, String apelidos) {
+    public Adestrador(String nome, String cidade) {
         this.nome = nome;
-        this.apelidos = apelidos;
+        this.cidade = cidade;
     }
 
     public String getId_titor() { return id_titor; }
@@ -27,7 +27,11 @@ public class Titor {
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
 
-    public String getApelidos() { return apelidos; }
-    public void setApelidos(String apelidos) { this.apelidos = apelidos; }
+    public String getCidade() {
+        return cidade;
+    }
 
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 }

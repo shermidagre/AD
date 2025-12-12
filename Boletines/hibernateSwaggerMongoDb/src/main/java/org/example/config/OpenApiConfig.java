@@ -15,9 +15,10 @@ public class OpenApiConfig {
     @Value("${spring.application.name:nome}")
     private String appName;
 
-    // Acceso: http://localhost:8081/swagger-ui/index.html
+    //http://localhost:8080/swagger-ui/swagger-ui/index.html
     @Bean
     public OpenAPI customOpenAPI() {
+
         return new OpenAPI()
                 .info(new Info().title(appName)
                         .description("API service in Swagger framework")
