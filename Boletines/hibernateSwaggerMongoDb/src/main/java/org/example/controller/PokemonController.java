@@ -21,43 +21,43 @@ public class PokemonController {
 
     @Operation(summary = "Crear un nuevo pokemon")
     @PostMapping("/pokemon")
-    public ResponseEntity<?> crearAlumno(@RequestBody Pokemon pokemon) {
+    public ResponseEntity<?> crearPokemon(@RequestBody Pokemon pokemon) {
         try {
-            return ResponseEntity.ok(pokemonService.crearOactualizarAlumno(pokemon));
+            return ResponseEntity.ok(pokemonService.crearPokemon(pokemon));
         } catch (IllegalArgumentException | EntityNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @Operation(summary = "Obtener todos los alumnos")
-    @GetMapping("/alumnos")
-    public List<Pokemon> obtenerTodosOsAlumnos() {
-        return pokemonService.obtenerTodosOsAlumnos();
+    @Operation(summary = "Obtener todos los pokemons")
+    @GetMapping("/pokemon")
+    public List<Pokemon> obtenerPokemons() {
+        return pokemonService.obtenerPokemons();
     }
 
-    @Operation(summary = "Obtener alumno por ID")
-    @GetMapping("/alumno/{id}")
-    public ResponseEntity<Pokemon> obtenerAlumnoPorId(@PathVariable Long id) {
-        return pokemonService.obtenerAlumnoPorId(id)
+    @Operation(summary = "Obtener pokemon por ID")
+    @GetMapping("/pokemon/{id}")
+    public ResponseEntity<Pokemon> obtenerPokemonId(@PathVariable String id) {
+        return pokemonService.obtenerPokemonId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Actualizar un alumno")
-    @PutMapping("/alumno/{id}")
-    public ResponseEntity<?> actualizarAlumno(@PathVariable Long id, @RequestBody Pokemon pokemonDetails) {
+    @Operation(summary = "Actualizar un pokemon")
+    @PutMapping("/pokemon/{id}")
+    public ResponseEntity<?> actualizarPokemon(@PathVariable String id, @RequestBody Pokemon pokemonDetails) {
         try {
-            Pokemon actualizado = pokemonService.actualizarAlumnoExistente(id, pokemonDetails);
+            Pokemon actualizado = pokemonService.actualizarPokemon(id, pokemonDetails);
             return ResponseEntity.ok(actualizado);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @Operation(summary = "Eliminar un alumno")
-    @DeleteMapping("/alumno/{id}")
-    public ResponseEntity<Void> eliminarAlumno(@PathVariable Long id) {
-        if (pokemonService.eliminarAlumno(id)) {
+    @Operation(summary = "Eliminar un pokemon")
+    @DeleteMapping("/pokemon/{id}")
+    public ResponseEntity<Void> eliminarPokemonId(@PathVariable String id) {
+        if (pokemonService.eliminarPokemonId(id)) {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

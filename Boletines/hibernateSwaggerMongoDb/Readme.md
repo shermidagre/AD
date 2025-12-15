@@ -1,186 +1,187 @@
-```markdown
-# 🎓 Microservicio de Gestión de Tutores y Alumnos
 
-Este microservicio proporciona una API RESTful para gestionar tutores y sus alumnos, implementando una relación **one-to-many** (un adestrador puede tener múltiples alumnos). Está construido siguiendo buenas prácticas basadas en los proyectos **Adestrador (one2many)** y **Exemplo API REST con Swagger**.
+# 🧬 Microservicio de Gestión de Adestradores y Pokémon (MongoDB con Referencias)
+
+Este microservicio proporciona una API RESTful para gestionar **adestradores** y sus **Pokémon**, utilizando **MongoDB** con relaciones mediante **referencias (`@DBRef`)**.  
+Implementa una relación **one-to-many** (un adestrador puede tener **múltiples Pokémon** asociados), y está construido con **Spring Boot**, **Spring Data MongoDB** y **Swagger** para documentación interactiva.
 
 ---
 
-## 📦 Funcionalidades
+## ✅ Funcionalidades
 
 La API permite:
 
-- ✅ Crear tutores  
-- ✅ Crear alumnos (asociados a un adestrador)  
-- ✅ Leer un adestrador junto con todos sus alumnos (relación *one2many*)  
-- ✅ Modificar tutores y alumnos  
-- ✅ Eliminar tutores (*restringido si tienen alumnos*)  
-- ✅ Eliminar alumnos  
+- ✅ Crear adestradores
+- ✅ Crear Pokémon (asociados a un adestrador mediante su `id_adestrador`)
+- ✅ Listar todos los adestradores
+- ✅ Listar todos los Pokémon
+- ✅ Obtener un adestrador o Pokémon por su ID
+- ✅ Actualizar adestradores y Pokémon
+- ✅ Eliminar adestradores y Pokémon
+
+> ⚠️ **Importante**: Al crear o actualizar un Pokémon, debes proporcionar el campo `"id_adestrador"` con el **ID válido** de un adestrador existente.  
+> ❌ Si el ID no existe, se devuelve error **400** o **404**.
+
+> ✅ Todos los endpoints devuelven respuestas en formato **JSON**.  
+> ✅ Los errores devuelven códigos HTTP adecuados: `400` (solicitud incorrecta), `404` (no encontrado), `204` (eliminado), etc.
 
 ---
 
-## 🗃️ Modelo de Datos
+## 📦 Modelo de Datos
 
-### Tabla `adestrador`
-```sql
-CREATE TABLE adestrador (
-  id_titor SERIAL PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL,
-  apelidos VARCHAR(150) NOT NULL
-);
+### Colección `adestrador`
+
+```json
+{
+  "_id": "66a1b2c3d4e5f67890123456",
+  "nome": "Brock",
+  "cidade": "Ciudad Plateada"
+}
 ```
 
-### Tabla `pokemon`
-```sql
-CREATE TABLE pokemon (
-  id_alumno SERIAL PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL,
-  apelidos VARCHAR(150) NOT NULL,
-  id_titor INTEGER NOT NULL,
-  CONSTRAINT fk_titor
-    FOREIGN KEY (id_titor)
-    REFERENCES adestrador (id_titor)
-    ON UPDATE CASCADE
-    ON DELETE RESTRICT  -- No se permite borrar tutores con alumnos asignados
-);
+### Colección `pokemon`
+
+```json
+{
+  "_id": "66a1b2c3d4e5f67890123457",
+  "nome": "Geodude",
+  "tipo": ["Roca", "Tierra"],
+  "nivel": 28,
+  "habilidades": ["Arañazo", "Derribo"],
+  "adestrador": {
+    "$ref": "adestrador",
+    "$id": { "$oid": "66a1b2c3d4e5f67890123456" }
+  }
+}
 ```
 
-> 🔒 **Restricción importante**: No se permite eliminar un adestrador si tiene alumnos asociados (`ON DELETE RESTRICT`).
-
----
-
-## 🧪 Datos de ejemplo pre-cargados
-
-### Tutores
-| id_titor | nome   | apelidos            |
-|----------|--------|---------------------|
-| 1        | María  | López García        |
-| 2        | Xosé   | Pérez Fernández     |
-
-### Alumnos
-| id_alumno | nome   | apelidos            | id_titor |
-|-----------|--------|---------------------|----------|
-| 1         | Ana    | Sánchez Varela      | 1        |
-| 2         | Brais  | Lamas Rodríguez     | 1        |
-| 3         | Clara  | Núñez Castro        | 1        |
-| 4         | Diego  | Torres Iglesias     | 1        |
-| 5         | Eva    | Mato Suárez         | 1        |
-| 6         | Hugo   | Rivas Domínguez     | 2        |
-| 7         | Iría   | Costa Rial          | 2        |
-| 8         | Jorge  | Fraga Doval         | 2        |
-| 9         | Lara   | Rey Santín          | 2        |
-| 10        | Martiño| Carballeira Soto    | 2        |
+> 🔗 **Relación mediante referencia**: Cada documento `pokemon` contiene una referencia (`@DBRef`) al documento `adestrador`.  
+> 🔄 **Transparencia en JSON**: Al serializar, el campo `"id_adestrador"` muestra el ID del adestrador (gracias a `@JsonProperty`), evitando bucles o datos innecesarios.
 
 ---
 
 ## 🌐 Endpoints de la API
 
-| Método | Ruta                    | Descripción                                         |
-|--------|-------------------------|-----------------------------------------------------|
-| `POST`   | `/adestrador`                | Crear un nuevo adestrador                                |
-| `POST`   | `/pokemon`               | Crear un nuevo pokemon (asociado a un `id_titor`)   |
-| `GET`    | `/adestrador/{id}`           | Obtener un adestrador **con todos sus alumnos**         |
-| `PUT`    | `/adestrador/{id}`           | Actualizar un adestrador                                 |
-| `PUT`    | `/pokemon/{id}`          | Actualizar un pokemon                                |
-| `DELETE` | `/pokemon/{id}`          | Eliminar un pokemon                                  |
-| `DELETE` | `/adestrador/{id}`           | Eliminar un adestrador (**solo si no tiene alumnos**)   |
+Todos los endpoints están bajo la ruta base: `/api`
 
-> ✅ Todos los endpoints devuelven respuestas en formato **JSON**.  
-> 📝 Los errores devuelven códigos HTTP adecuados (400, 404, 409, etc.).
+### Adestradores
 
----
+| Método   | Ruta                     | Descripción                          |
+|----------|--------------------------|--------------------------------------|
+| `POST`   | `/api/adestrador`        | Crear un nuevo adestrador            |
+| `GET`    | `/api/adestrador`        | Listar todos los adestradores        |
+| `GET`    | `/api/adestrador/{id}`   | Obtener un adestrador por ID         |
+| `PUT`    | `/api/adestrador/{id}`   | Actualizar un adestrador             |
+| `DELETE` | `/api/adestrador/{id}`   | Eliminar un adestrador               |
 
-## Como iniciarlo en una maquina virtual
+### Pokémon
 
-### Instala docker si no lo tienes instalado para subir el contendor
-
-````dotenv
-sudo apt update
-sudo apt install docker.io -y
-````
-
-#### Crea el contenedor
-````dotenv
-sudo docker run -d -p 27017:27017 --name mi-mongo mongo:latest
-````
-
-#### Comprueba que esta subido
-
-````dotenv
-sudo docker ps
-````
-
-# 🚀 Guía Rápida: Probando tu API con Swagger UI
-
-Ahora que tu aplicación está conectada, puedes acceder y probar tus endpoints usando **Swagger UI**, una interfaz web interactiva ya instalada y configurada en tu proyecto. Swagger te genera botones para probar cada método **sin necesidad de escribir código**.
+| Método   | Ruta                   | Descripción                        |
+|----------|------------------------|------------------------------------|
+| `POST`   | `/api/pokemon`         | Crear un nuevo Pokémon (con `id_adestrador`) |
+| `GET`    | `/api/pokemon`         | Listar todos los Pokémon           |
+| `GET`    | `/api/pokemon/{id}`    | Obtener un Pokémon por ID          |
+| `PUT`    | `/api/pokemon/{id}`    | Actualizar un Pokémon              |
+| `DELETE` | `/api/pokemon/{id}`    | Eliminar un Pokémon                |
 
 ---
 
-## 🔗 1. Abrir Swagger UI
+## 🧪 Ejemplo de uso
 
-Tu aplicación Java corre localmente en Windows (no en la VM) y está configurada en el puerto `8082`.  
-Ingresa aquí:
+### Crear un Pokémon asociado a un adestrador
 
-👉 [http://localhost:8082/swagger-ui/index.html](http://localhost:8082/swagger-ui/index.html)
+**POST** `/api/pokemon`
 
----
+```json
+{
+  "nome": "Pikachu",
+  "tipo": ["Eléctrico"],
+  "nivel": 42,
+  "habilidades": ["Impactrueno", "Rapidez"],
+  "id_adestrador": "66a1b2c3d4e5f67890123456"
+}
+```
 
-## ⚠️ 2. Instrucciones de Uso (Orden Importante)
-
-Al abrir Swagger, verás dos secciones principales:
-
-- `adestrador-controller`
-- `pokemon-controller`
-
-> ❗ **Importante**: Según la lógica implementada en `AlumnoService`, **un pokemon NO puede existir sin un Titor**. Si intentas crear un pokemon primero, obtendrás un error.
-
-Sigue **estrictamente este orden**:
+> ⚠️ El `id_adestrador` debe corresponder a un adestrador existente. Si no, se retorna error.
 
 ---
-
-### ✅ Paso A: Crear un Titor
-
-1. Despliega el grupo **`adestrador-controller`**.
-2. Busca el endpoint:  
-   🟩 `POST /api/adestrador`
-3. Haz clic en **"Try it out"** (a la derecha).
-4. En el campo **Request body**, reemplaza el contenido por:
-   ```json
-   {
-     "nome": "Pepe",
-     "apelidos": "Pérez"
-   }
-   
 
 ## 📚 Documentación API (Swagger)
 
-La API incluye documentación interactiva mediante **Swagger UI** en:
+La API incluye documentación interactiva mediante **Swagger UI**:
 
-```
-GET /swagger-ui/index.html
+🔗 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
-```
-
-o accede directamente a la especificación OpenAPI en:
+También puedes acceder a la especificación OpenAPI en:
 
 ```
 GET /v3/api-docs
 ```
 
-> 🖼️ Swagger permite probar los endpoints directamente desde el navegador.
+> 💡 **Consejo**: Usa Swagger UI para probar los endpoints directamente desde el navegador, sin necesidad de Postman.
+
+---
+
+## ⚙️ Configuración
+
+El servicio corre en el puerto **8080** (configurable en `application.properties`):
+
+```properties
+app.version=1.0.0
+server.port=8080
+spring.application.name=Gestor Alumnos Mongo VM
+
+spring.data.mongodb.uri=mongodb://10.0.12.52:27017/probas
+
+springdoc.swagger-ui.path=/swagger-ui/index.html
+```
+
+> La base de datos utilizada es `probas`, y las colecciones se crean automáticamente.
 
 ---
 
 ## 🛠️ Tecnologías utilizadas
 
-- **Lenguaje**: Java / Kotlin / Python (según implementación)
-- **Framework**: Spring Boot / FastAPI / Express (ej. basado en proyectos de referencia)
-- **Base de datos**: PostgreSQL
-- **ORM**: JPA (Hibernate) / SQLAlchemy / TypeORM
-- **Validación**: Bean Validation / Pydantic
-- **Documentación**: Swagger/OpenAPI 3
-- **Pruebas**: JUnit / pytest
+- **Lenguaje**: Java 17+
+- **Framework**: Spring Boot
+- **Base de datos**: MongoDB (con `@DBRef` para relaciones)
+- **Persistencia**: Spring Data MongoDB
+- **Validación**: Manejo de excepciones (`EntityNotFoundException`, `IllegalArgumentException`)
+- **Documentación**: Swagger/OpenAPI 3 (`springdoc-openapi`)
+- **Arquitectura**: Capas de controlador, servicio y repositorio
 
 ---
-✅ Servidor disponible en: `http://localhost:8080`
+
+## ▶️ Servidor disponible en
+
+```
+http://localhost:8080
+```
+### 📊 Capturas de pantalla
+
+![img.png](imagenes/img.png)
 
 ---
+
+![img_1.png](imagenes/img_1.png)
+
+---
+
+![img_2.png](imagenes/img_2.png)
+
+---
+
+![img_3.png](imagenes/img_3.png)
+
+---
+
+---
+
+> 💡 **Nota final**: Este diseño permite una **relación eficiente y escalable** entre adestradores y Pokémon, ideal para futuras expansiones (como listar todos los Pokémon de un adestrador en un solo endpoint, si se implementa).
+
+```dotenv
+    http://localhost:8080/swagger-ui/swagger-ui/index.html#/
+```
+
+![img_4.png](imagenes/img_4.png)
+
+

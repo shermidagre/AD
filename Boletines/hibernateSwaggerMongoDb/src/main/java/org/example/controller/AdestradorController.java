@@ -19,41 +19,41 @@ public class AdestradorController {
     @Autowired
     private AdestradorService adestradorService;
 
-    @Operation(summary = "Crear un nuevo titor")
-    @PostMapping("/titor")
-    public Adestrador crearTitor(@RequestBody Adestrador adestrador) {
-        return adestradorService.crearOactualizarTitor(adestrador);
+    @Operation(summary = "Crear un nuevo adestrador")
+    @PostMapping("/adestrador")
+    public Adestrador crearAdestrador(@RequestBody Adestrador adestrador) {
+        return adestradorService.crearAdestrador(adestrador);
     }
 
-    @Operation(summary = "Obtener todos los titores")
-    @GetMapping("/titores")
-    public List<Adestrador> obtenerTodosOsTitores() {
-        return adestradorService.obtenerTodosOsTitores();
+    @Operation(summary = "Obtener todos los adestradores")
+    @GetMapping("/adestrador")
+    public List<Adestrador> obtenerAdestradores() {
+        return adestradorService.obtenerAdestradores();
     }
 
-    @Operation(summary = "Obtener titor por id")
-    @GetMapping("/titor/{id}")
-    public ResponseEntity<Adestrador> obtenerTitorPorId(@PathVariable Long id) {
-        return adestradorService.obtenerTitorPorId(id)
+    @Operation(summary = "Obtener adestrador por id")
+    @GetMapping("/adestrador/{id}")
+    public ResponseEntity<Adestrador> obtenerAdestradorId(@PathVariable Long id) {
+        return adestradorService.obtenerAdestradorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Actualizar un titor")
-    @PutMapping("/titor/{id}")
-    public ResponseEntity<Adestrador> actualizarTitor(@PathVariable Long id, @RequestBody Adestrador adestradorDetails) {
+    @Operation(summary = "Actualizar un adestrador")
+    @PutMapping("/adestrador/{id}")
+    public ResponseEntity<Adestrador> actualizarAdestrador(@PathVariable Long id, @RequestBody Adestrador adestradorDetails) {
         try {
-            Adestrador actualizado = adestradorService.actualizarTitorExistente(id, adestradorDetails);
+            Adestrador actualizado = adestradorService.actualizarAdestrador(id, adestradorDetails);
             return ResponseEntity.ok(actualizado);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @Operation(summary = "Eliminar un titor")
-    @DeleteMapping("/titor/{id}")
-    public ResponseEntity<Void> eliminarTitor(@PathVariable Long id) {
-        if (adestradorService.eliminarTitor(id)) {
+    @Operation(summary = "Eliminar un adestrador")
+    @DeleteMapping("/adestrador/{id}")
+    public ResponseEntity<Void> eliminarAdestradorId(@PathVariable Long id) {
+        if (adestradorService.eliminarAdestradorId(id)) {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

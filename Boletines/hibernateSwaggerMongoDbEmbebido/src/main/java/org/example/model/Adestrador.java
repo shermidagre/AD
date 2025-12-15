@@ -7,18 +7,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "adestrador")
 public class Adestrador {
 
-    @Id // En Mongo el ID suele ser String (ObjectId)
+    @Id
     @Schema(hidden = true)
     private String id_adestrador;
 
     private String nome;
     private String cidade;
 
+    private Pokemon pokemon;
     public Adestrador() {}
 
-    public Adestrador(String nome, String cidade) {
+    public Adestrador(String nome, String cidade, Pokemon pokemon) {
         this.nome = nome;
         this.cidade = cidade;
+        this.pokemon = pokemon;
     }
 
     public String getId_adestrador() { return id_adestrador; }
@@ -34,4 +36,22 @@ public class Adestrador {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
+
+    public Pokemon getPokemon() {
+        return pokemon;
+    }
+    public void setPokemon(Pokemon pokemon) {
+        this.pokemon = pokemon;
+    }
+
+    @Override
+    public String toString() {
+        return "Adestrador{" +
+                "id_adestrador='" + id_adestrador + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", pokemon=" + pokemon +
+                '}';
+    }
+
 }

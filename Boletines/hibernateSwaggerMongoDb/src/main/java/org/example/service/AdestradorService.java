@@ -21,29 +21,29 @@ public class AdestradorService {
     }
 
     @Transactional
-    public Adestrador crearOactualizarTitor(Adestrador adestrador) {
+    public Adestrador crearAdestrador(Adestrador adestrador) {
         return adestradorRepository.save(adestrador);
     }
 
     @Transactional
-    public Adestrador actualizarTitorExistente(Long id, Adestrador nuevoAdestrador) {
+    public Adestrador actualizarAdestrador(Long id, Adestrador nuevoAdestrador) {
         Adestrador adestrador = adestradorRepository.findById(String.valueOf(id))
                 .orElseThrow(() -> new EntityNotFoundException("Titor no encontrado"));
 
         adestrador.setNome(nuevoAdestrador.getNome());
-        adestrador.setApelidos(nuevoAdestrador.getApelidos());
+        adestrador.setCidade(nuevoAdestrador.getCidade());
         return adestradorRepository.save(adestrador);
     }
 
-    public List<Adestrador> obtenerTodosOsTitores() {
+    public List<Adestrador> obtenerAdestradores() {
         return adestradorRepository.findAll();
     }
 
-    public Optional<Adestrador> obtenerTitorPorId(Long id) {
+    public Optional<Adestrador> obtenerAdestradorId(Long id) {
         return adestradorRepository.findById(String.valueOf(id));
     }
 
-    public boolean eliminarTitor(Long id) {
+    public boolean eliminarAdestradorId(Long id) {
         if (adestradorRepository.existsById(String.valueOf(id))) {
             adestradorRepository.deleteById(String.valueOf(id));
             return true;

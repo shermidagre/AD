@@ -8,28 +8,26 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "alumnos")
+@Document(collection = "pokemon")
 public class Pokemon {
 
     @Id
     @Schema(hidden = true)
-    private String id_alumno; // String para Mongo
+    private String id_pokemon;
 
     private String nome;
     private String[] tipo;
     private int nivel;
     private String[] habilidades;
 
-    // @DBRef indica a Mongo que guarde solo la referencia (el ID), no el objeto entero incrustado
+    // Relación con Adestrador (Solo guarda la referencia en Mongo)
     @DBRef
-    @JsonIgnore
+    @JsonIgnore // Ignoramos el objeto completo al serializar a JSON para evitar bucles o datos enormes
     private Adestrador adestrador;
 
-    // Campo auxiliar para recibir el ID desde el JSON del frontend
+    // Campo auxiliar para recibir/enviar solo el ID en el JSON
     @Transient
-    private String titorIdRequest;
-
-
+    private String adestradorIdRequest;
 
     public Pokemon() {}
 
@@ -40,8 +38,10 @@ public class Pokemon {
         this.habilidades = habilidades;
     }
 
-    public String getId_alumno() { return id_alumno; }
-    public void setId_alumno(String id_alumno) { this.id_alumno = id_alumno; }
+    // --- Getters y Setters Básicos ---
+
+    public String getId_pokemon() { return id_pokemon; }
+    public void setId_pokemon(String id_pokemon) { this.id_pokemon = id_pokemon; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -51,21 +51,32 @@ public class Pokemon {
 
     public int getNivel() { return nivel; }
     public void setNivel(int nivel) { this.nivel = nivel; }
+
     public String[] getHabilidades() { return habilidades; }
     public void setHabilidades(String[] habilidades) { this.habilidades = habilidades; }
-    public Adestrador getTitor() { return adestrador; }
-    public void setTitor(Adestrador adestrador) { this.adestrador = adestrador; }
 
-    // GETTER JSON: Devuelve el ID del titor cuando piden el alumno
-    @JsonProperty("id_titor")
-    public String getIdTitor() {
-        if(this.titorIdRequest != null) return this.titorIdRequest;
-        return (adestrador != null) ? adestrador.getId_titor() : null;
+    // --- Gestión de la Relación Adestrador ---
+
+    // Getter y Setter del OBJETO real (usado por el Servicio y Spring Data)
+    public Adestrador getAdestrador() { return adestrador; }
+    public void setAdestrador(Adestrador adestrador) { this.adestrador = adestrador; }
+
+
+    // --- Gestión del JSON (DTO pattern integrado) ---
+
+    // GETTER JSON: Cuando enviamos el Pokemon al frontend, enviamos el ID del adestrador
+    @JsonProperty("id_adestrador")
+    public String getIdAdestrador() {
+        // Si tenemos el objeto cargado, devolvemos su ID. Si no, devolvemos el temporal.
+        if (this.adestrador != null) {
+            return this.adestrador.getId_adestrador();
+        }
+        return this.adestradorIdRequest;
     }
 
-    // SETTER JSON: Recibe el ID del titor cuando crean el alumno
-    @JsonProperty("id_titor")
-    public void setIdTitor(String idTitor) {
-        this.titorIdRequest = idTitor;
+    // SETTER JSON: Cuando recibimos un JSON para crear/editar, guardamos el ID temporalmente
+    @JsonProperty("id_adestrador")
+    public void setIdAdestrador(String idAdestrador) {
+        this.adestradorIdRequest = idAdestrador;
     }
 }
