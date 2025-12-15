@@ -1,8 +1,4 @@
-Claro. A continuación, te presento un **README.md** limpio, bien estructurado y en formato **Markdown estándar** (sin el formato RTF que enviaste), siguiendo la misma estructura y estilo del ejemplo proporcionado, pero adaptado a tus archivos y funcionalidad real (uso de **MongoDB**, modelo **Adestrador-Pokemon**, endpoints disponibles, etc.).
 
----
-
-```markdown
 # 🏥 Microservicio de Gestión de Adestradores y Pokémon (MongoDB)
 
 Este microservicio proporciona una API RESTful para gestionar **adestradores** y sus **Pokémon**, utilizando una base de datos **MongoDB**. Cada adestrador puede tener **un único Pokémon asociado** (relación **one-to-one**), y está implementado con **Spring Boot** y **Spring Data MongoDB**.
@@ -133,8 +129,6 @@ http://localhost:8080
 ```
 
 ## Mongo db compass
-
----
 
 ### 📊 Capturas de pantalla
 
