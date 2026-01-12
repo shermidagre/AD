@@ -4,7 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.Shopping;
 import org.example.repository.ShoppingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -16,12 +19,27 @@ public class ShoppingService {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public Shopping importShoppingList(String filePath) throws IOException {
-        // 1. Leer el archivo JSON y mapear a la clase Shopping
-        File file = new File(filePath);
-        Shopping shopping = objectMapper.readValue(file, Shopping.class);
+    /**
+     * Lee un JSON desde una ruta, lo convierte a objeto Shopping y lo persiste en Mongo.
+     */
+    public Shopping importShoppingList(String filePath) {
+        try {
+            File file = new File(filePath);
 
-        // 2. Guardar en MongoDB usando el Repository
-        return shoppingRepository.save(shopping);
+            if (!file.exists()) {
+                throw new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Archivo no encontrado en: " + filePath);
+            }
+
+            // Deserialización Jackson: JSON -> Objeto Java
+            Shopping shopping = objectMapper.readValue(file, Shopping.class);
+
+            // Persistencia en MongoDB
+            return shoppingRepository.save(shopping);
+
+        } catch (IOException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Error al procesar el JSON: " + e.getMessage());
+        }
     }
 }

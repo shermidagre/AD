@@ -84,7 +84,7 @@ La ruta base de la API es: `/api/shopping`
 
 Para procesar el archivo incluido en el proyecto (`src/main/java/org/example/json/shopp.json`):
 
-**POST** `/api/shopping/import?path=C:/Ruta/Al/Proyecto/shopp.json`
+**POST** `C:\Users\samue\Documents\dam2\AD\Boletines\hibernateSwaggerMongoDbJacksonJson\src\main\java\org\example\json\shopp.json`
 
 **Respuesta (200 OK):**
 
