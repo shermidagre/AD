@@ -140,4 +140,5 @@ Siguiendo las mejores prácticas, el código se organiza en los siguientes paque
 * **`json`**: Directorio de recursos para archivos de prueba.
 
 
-
+#### Guia que he seguido para crear este proyecto :)
+* [Spring Boot con MongoDB y Jackson](https://coderspacket.com/posts/parse-json-data-in-java-using-jackson-library/)
