@@ -1,0 +1,26 @@
+{
+  "shopping_list": {
+    "groceries": [
+      { "id": 1, "item": "Apples", "quantity": 3, "unit": "lbs" },
+      { "id": 2, "item": "Grapes", "quantity": 2, "unit": "lbs" },
+      { "id": 3, "item": "Bread", "quantity": 2, "unit": "loaves" },
+      { "id": 4, "item": "Milk", "quantity": 1, "unit": "gallon" },
+      { "id": 5, "item": "Eggs", "quantity": 1, "unit": "dozen" },
+      { "id": 6, "item": "Chicken", "quantity": 2, "unit": "lbs" },
+      { "id": 7, "item": "Meat", "quantity": 1, "unit": "lbs" },
+      { "id": 8, "item": "Tomato", "quantity": 2, "unit": "lbs" }
+    ],
+    "personal_care": [
+      { "id": 1, "item": "Toothpaste", "quantity": 2, "unit": "packs" },
+      { "id": 2, "item": "Shampoo", "quantity": 1, "unit": "bottle" },
+      { "id": 3, "item": "Soap", "quantity": 3, "unit": "bars" },
+      { "id": 4, "item": "Toilet Paper", "quantity": 1, "unit": "pack" }
+    ],
+    "household_items": [
+      { "id": 1, "item": "Paper Towels", "quantity": 4, "unit": "rolls" },
+      { "id": 2, "item": "Laundry Detergent", "quantity": 1, "unit": "container" },
+      { "id": 3, "item": "Trash Bags", "quantity": 2, "unit": "boxes" },
+      { "id": 4, "item": "Batteries", "quantity": 1, "unit": "pack" }
+    ]
+  }
+}
