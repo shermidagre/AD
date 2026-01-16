@@ -1,0 +1,14 @@
+CREATE TABLE xogadores (
+id_xogador SERIAL PRIMARY KEY,
+nome VARCHAR(100),
+apelidos VARCHAR(100),
+posicion VARCHAR(100),
+data_nacemento DATE,
+nacionalidade VARCHAR(100),
+id_equipo INT REFERENCES equipos(id_equipo)
+);
+CREATE TABLE equipos (
+id_equipo SERIAL PRIMARY KEY,
+nome VARCHAR(100),
+cidade VARCHAR(100)
+);
