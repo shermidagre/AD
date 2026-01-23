@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MongoConfig {
 
-    @Value("${spring.data.mongodb.database}")
-    private String database;
+    @Value("${spring.data.mongodb.uri}")
+    private String conMongo;
 
     @Bean
     public MongoClient mongoClient (){
         try {
-            return MongoClients.create(database);
+            return MongoClients.create(conMongo);
         }catch (Exception e){
             throw new RuntimeException("Error conectando a mongo", e);
         }

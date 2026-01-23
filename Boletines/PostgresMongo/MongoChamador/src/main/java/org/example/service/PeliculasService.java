@@ -16,14 +16,12 @@ import java.util.Optional;
 @Service
 public class PeliculasService {
 
-    private PeliculasRepository peliculasRepository;
-    private ActoresRepository actoresRepository;
-    private ObjectMapper objectMapper;
+    private final PeliculasRepository peliculasRepository;
+    private final ActoresRepository actoresRepository;
 
-    public PeliculasService(PeliculasRepository peliculasRepository, ActoresRepository actoresRepository, ObjectMapper objectMapper) {
+    public PeliculasService(PeliculasRepository peliculasRepository, ActoresRepository actoresRepository) {
         this.peliculasRepository = peliculasRepository;
         this.actoresRepository = actoresRepository;
-        this.objectMapper = objectMapper;
     }
 
     public void crearPelicula(Peliculas peliculas) {
