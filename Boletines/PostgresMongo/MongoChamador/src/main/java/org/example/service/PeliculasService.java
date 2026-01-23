@@ -1,6 +1,7 @@
 package org.example.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.example.model.Actores;
 import org.example.model.Peliculas;
 import org.example.repository.ActoresRepository;
@@ -52,6 +53,7 @@ public class PeliculasService {
         }
     }
     public void leerCrearJson(){
+        Gson gson = new Gson();
 
         try {
             FileReader lector = new FileReader("C:\\Users\\samue\\Documents\\dam2\\AD\\Boletines\\PostgresMongo\\MongoChamador\\src\\main\\java\\org\\example\\json\\insert.json");
