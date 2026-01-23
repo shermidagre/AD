@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.model.Equipo;
-import org.example.service.ConexionService;
+import org.example.model.Peliculas;
+import org.example.service.PeliculasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,16 +10,16 @@ import java.util.List;
 @Service
 public class Secuencia {
 
-    private final ConexionService conexionService;
+    private final PeliculasService peliculasService;
 
     @Autowired
-    public Secuencia(ConexionService conexionService) {
-        this.conexionService = conexionService;
+    public Secuencia(PeliculasService peliculasService) {
+        this.peliculasService = peliculasService;
     }
 
-    public void executar() {
+    public void ejecuccionSecuencia() {
 
-       List<Equipo> equipos = conexionService.getAllEquipos();
+       List<Peliculas> equipos = peliculasService.listarPeliculas();
 
     }
 }

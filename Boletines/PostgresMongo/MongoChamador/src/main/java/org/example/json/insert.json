@@ -1,0 +1,152 @@
+[
+  {
+    "idPelicula": 1,
+    "titulo": "El Padrino",
+    "xenero": "Drama",
+    "ano": 1972,
+    "actores": [
+      {
+        "idActor": 101,
+        "nome": "Marlon",
+        "apelido": "Brando",
+        "nacionalidade": "Estadounidense"
+      },
+      {
+        "idActor": 102,
+        "nome": "Al",
+        "apelido": "Pacino",
+        "nacionalidade": "Estadounidense"
+      }
+    ]
+  },
+  {
+    "idPelicula": 2,
+    "titulo": "Titanic",
+    "xenero": "Romance",
+    "ano": 1997,
+    "actores": [
+      {
+        "idActor": 103,
+        "nome": "Leonardo",
+        "apelido": "DiCaprio",
+        "nacionalidade": "Estadounidense"
+      },
+      {
+        "idActor": 104,
+        "nome": "Kate",
+        "apelido": "Winslet",
+        "nacionalidade": "Británica"
+      }
+    ]
+  },
+  {
+    "idPelicula": 3,
+    "titulo": "Parásitos",
+    "xenero": "Thriller",
+    "ano": 2019,
+    "actores": [
+      {
+        "idActor": 105,
+        "nome": "Song",
+        "apelido": "Kang-ho",
+        "nacionalidade": "Surcoreana"
+      }
+    ]
+  },
+  {
+    "idPelicula": 4,
+    "titulo": "Matrix",
+    "xenero": "Ciencia Ficción",
+    "ano": 1999,
+    "actores": [
+      {
+        "idActor": 106,
+        "nome": "Keanu",
+        "apelido": "Reeves",
+        "nacionalidade": "Canadiense"
+      }
+    ]
+  },
+  {
+    "idPelicula": 5,
+    "titulo": "La La Land",
+    "xenero": "Musical",
+    "ano": 2016,
+    "actores": []
+  },
+  {
+    "idPelicula": 6,
+    "titulo": "Cadena Perpetua",
+    "xenero": "Drama",
+    "ano": 1994,
+    "actores": [
+      {
+        "idActor": 107,
+        "nome": "Tim",
+        "apelido": "Robbins",
+        "nacionalidade": "Estadounidense"
+      },
+      {
+        "idActor": 108,
+        "nome": "Morgan",
+        "apelido": "Freeman",
+        "nacionalidade": "Estadounidense"
+      }
+    ]
+  },
+  {
+    "idPelicula": 7,
+    "titulo": "Interestelar",
+    "xenero": "Ciencia Ficción",
+    "ano": 2014,
+    "actores": [
+      {
+        "idActor": 103,
+        "nome": "Leonardo",
+        "apelido": "DiCaprio",
+        "nacionalidade": "Estadounidense"
+      }
+    ]
+  },
+  {
+    "idPelicula": 8,
+    "titulo": "El Caballero Oscuro",
+    "xenero": "Acción",
+    "ano": 2008,
+    "actores": [
+      {
+        "idActor": 109,
+        "nome": "Christian",
+        "apelido": "Bale",
+        "nacionalidade": "Galesa"
+      },
+      {
+        "idActor": 110,
+        "nome": "Heath",
+        "apelido": "Ledger",
+        "nacionalidade": "Australiana"
+      }
+    ]
+  },
+  {
+    "idPelicula": 9,
+    "titulo": "Origen",
+    "xenero": "Ciencia Ficción",
+    "ano": 2010,
+    "actores": []
+  },
+  {
+    "idPelicula": 10,
+    "titulo": "Forrest Gump",
+    "xenero": "Drama",
+    "ano": 1994,
+    "actores": [
+      {
+        "idActor": 111,
+        "nome": "Tom",
+        "apelido": "Hanks",
+        "nacionalidade": "Estadounidense"
+      }
+    ]
+  }
+]

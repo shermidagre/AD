@@ -13,8 +13,8 @@ public class Main {
         this.secuencia = secuencia;
     }
     @PostConstruct
-    public void executar() {
-        secuencia.executar();
+    public void ejecuccionSecuencia() {
+        secuencia.ejecuccionSecuencia();
         System.exit(200);
     }
     public static void main(String[] args) {
