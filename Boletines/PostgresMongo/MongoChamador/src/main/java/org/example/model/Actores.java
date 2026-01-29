@@ -6,10 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Actores {
 
     private long idActor;
-    private String nombre;
-    private String apellido;
+    private String nome;
+    private String apelidos;
     private String nacionalidad;
-    private Peliculas peliculas;
+
 
 
     // Getters y Setters
@@ -22,19 +22,19 @@ public class Actores {
         this.idActor = idActor;
     }
 
-    public String getApellido() {
+    public String getApelidos() {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
+    public void setApelidos(String apelidos) {
         this.apellido = apellido;
     }
 
-    public String getNombre() {
+    public String getNome() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNome(String nome) {
         this.nombre = nombre;
     }
 
@@ -46,11 +46,7 @@ public class Actores {
         this.nacionalidad = nacionalidad;
     }
 
-    public Peliculas getPeliculas() {
-        return peliculas;
-    }
 
-    public void setPeliculas(Peliculas peliculas) {
-        this.peliculas = peliculas;
-    }
+
+
 }

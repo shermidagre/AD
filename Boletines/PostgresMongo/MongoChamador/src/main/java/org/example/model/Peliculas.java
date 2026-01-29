@@ -9,8 +9,8 @@ public class Peliculas {
 
     private long idPelicula;
     private String titulo;
-    private String genero;
-    private int año;
+    private String xenero;
+    private int ano;
     private List<Actores> actores;
 
 
@@ -25,12 +25,12 @@ public class Peliculas {
         this.idPelicula = idPelicula;
     }
 
-    public int getAño() {
-        return año;
+    public int getAno() {
+        return ano;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAno(int ano) {
+        this.ano = ano;
     }
 
     public String getTitulo() {
@@ -41,12 +41,12 @@ public class Peliculas {
         this.titulo = titulo;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getXenero() {
+        return xenero;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setXenero(String xenero) {
+        this.xenero = xenero;
     }
 
     public List<Actores> getActores() {
