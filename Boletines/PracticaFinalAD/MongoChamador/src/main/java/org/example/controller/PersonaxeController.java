@@ -1,4 +1,4 @@
-package org.example.controller;
+package PracticaFinalAD.MongoChamador.src.main.java.org.example.controller;
 
 
 import org.example.model.Personaxe;

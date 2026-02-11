@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ADA.iml" filepath="$PROJECT_DIR$/.idea/ADA.iml" />
-      <module fileurl="file://$PROJECT_DIR$/adp/adp.iml" filepath="$PROJECT_DIR$/adp/adp.iml" />
     </modules>
   </component>
 </project>

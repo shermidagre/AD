@@ -1,4 +1,4 @@
-package org.example.controller.apoiMoral;
+package PracticaFinalAD.MongoChamador.src.main.java.org.example.controller.apoiMoral;
 
 
 import org.springframework.web.bind.annotation.*;

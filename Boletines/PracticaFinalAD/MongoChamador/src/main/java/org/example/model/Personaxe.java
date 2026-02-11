@@ -1,4 +1,4 @@
-package org.example.model;
+package PracticaFinalAD.MongoChamador.src.main.java.org.example.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 

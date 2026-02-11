@@ -1,4 +1,4 @@
-package org.example.config;
+package PracticaFinalAD.MongoChamador.src.main.java.org.example.config;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
