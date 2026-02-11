@@ -60,11 +60,11 @@ public class Actores {
         this.nacionalidade = nacionalidade;
     }
 
-    public Peliculas getEquipo() {
+    public Peliculas getPeliculas() {
         return peliculas;
     }
 
-    public void setEquipo(Peliculas peliculas) {
+    public void setPeliculas(Peliculas peliculas) {
         this.peliculas = peliculas;
     }
 }

@@ -1,59 +1,23 @@
 package org.example.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "peliculas")
 public class Peliculas {
-
-    private long idPelicula;
+    @MongoId(FieldType.INT64) // Use INT64 for long IDs
+    private Long idPelicula;
     private String titulo;
     private String xenero;
     private int ano;
     private List<Actores> actores;
-
-
-    // Getters y Setters
-
-
-    public long getIdPelicula() {
-        return idPelicula;
-    }
-
-    public void setIdPelicula(long idPelicula) {
-        this.idPelicula = idPelicula;
-    }
-
-    public int getAno() {
-        return ano;
-    }
-
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getXenero() {
-        return xenero;
-    }
-
-    public void setXenero(String xenero) {
-        this.xenero = xenero;
-    }
-
-    public List<Actores> getActores() {
-        return actores;
-    }
-
-    public void setActores(List<Actores> actores) {
-        this.actores = actores;
-    }
 }

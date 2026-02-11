@@ -71,4 +71,11 @@ public class PeliculasController {
         peliculasService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/titulo/{titulo}")
+    public ResponseEntity<Peliculas> getByTitulo(@PathVariable String titulo) {
+        return peliculasService.findByTitulo(titulo)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

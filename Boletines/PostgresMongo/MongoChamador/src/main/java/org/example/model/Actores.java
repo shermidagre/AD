@@ -1,52 +1,17 @@
 package org.example.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "actores")
 public class Actores {
-
-    private long idActor;
+    private Long idActor;
     private String nome;
     private String apelidos;
-    private String nacionalidad;
-
-
-
-    // Getters y Setters
-
-    public long getIdActor() {
-        return idActor;
-    }
-
-    public void setIdActor(long idActor) {
-        this.idActor = idActor;
-    }
-
-    public String getApelidos() {
-        return apellido;
-    }
-
-    public void setApelidos(String apelidos) {
-        this.apellido = apellido;
-    }
-
-    public String getNome() {
-        return nombre;
-    }
-
-    public void setNome(String nome) {
-        this.nombre = nombre;
-    }
-
-    public String getNacionalidad() {
-        return nacionalidad;
-    }
-
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
-    }
-
-
-
-
+    private String nacionalidade;
 }

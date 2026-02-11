@@ -46,13 +46,13 @@ public class ActoresController {
     "id": "1"
   }
 }*/
-        if (actores.getEquipo() != null && actores.getEquipo().getIdPelicula() != null) {
-            Peliculas eq = peliculasService.findById(actores.getEquipo().getIdPelicula())
+        if (actores.getPeliculas() != null && actores.getPeliculas().getIdPelicula() != null) {
+            Peliculas eq = peliculasService.findById(actores.getPeliculas().getIdPelicula())
                     .orElse(null);
             if (eq == null) {
                 return ResponseEntity.badRequest().build();
             }
-            actores.setEquipo(eq);
+            actores.setPeliculas(eq);
         }
         Actores gardado = actoresService.save(actores);
         return ResponseEntity.ok(gardado);
@@ -68,10 +68,10 @@ public class ActoresController {
                     x.setNacionalidade(datos.getNacionalidade());
                     x.setNacionalidade(datos.getNacionalidade());
 
-                    if (datos.getEquipo() != null && datos.getEquipo().getIdPelicula() != null) {
-                        Peliculas eq = peliculasService.findById(datos.getEquipo().getIdPelicula())
+                    if (datos.getPeliculas() != null && datos.getPeliculas().getIdPelicula() != null) {
+                        Peliculas eq = peliculasService.findById(datos.getPeliculas().getIdPelicula())
                                 .orElse(null);
-                        x.setEquipo(eq);
+                        x.setPeliculas(eq);
                     }
 
                     return ResponseEntity.ok(actoresService.save(x));

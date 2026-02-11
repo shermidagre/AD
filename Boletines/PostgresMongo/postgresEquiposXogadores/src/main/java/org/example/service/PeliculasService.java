@@ -29,16 +29,13 @@ public class PeliculasService {
     public void delete(Long id) {
         peliculasRepository.deleteById(id);
     }
-    public List<Peliculas> obterEquipoNome(String nome) {
-        return peliculasRepository.findByNome(nome);
-    }
-
-    public List<Peliculas> obterEquipoCidade(String cidade) {
-        return peliculasRepository.findByCidade(cidade);
-    }
 
     public Optional<Peliculas> findById(Long id) {
         return peliculasRepository.findById(id);
+    }
+
+    public Optional<Peliculas> findByTitulo(String titulo) {
+        return peliculasRepository.findByTitulo(titulo);
     }
 
     public List<Peliculas> obterTodosEquipos() {
